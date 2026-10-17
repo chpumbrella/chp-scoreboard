@@ -1,0 +1,365 @@
+VCU
+Dayton
+Davidson
+Rhode Island
+Richmond
+Duquesne
+St Bonaventure
+St Louis
+George Mason
+Fordham
+G Washington
+St Joseph's PA
+La Salle
+Massachusetts
+Cincinnati
+Houston
+Memphis
+Wichita St
+Connecticut
+South Florida
+SMU
+Temple
+Tulsa
+UCF
+East Carolina
+Tulane
+Louisville
+Duke
+Virginia
+North Carolina
+Florida St
+NC State
+Notre Dame
+Syracuse
+Virginia Tech
+Miami FL
+Georgia Tech
+Pittsburgh
+Clemson
+Wake Forest
+Boston College
+Michigan St
+SUNY Albany
+UMBC
+Stony Brook
+MA Lowell
+Purdue
+New Hampshire
+Binghamton
+Maine
+Ohio St
+NJIT
+Lipscomb
+North Florida
+FGCU
+North Alabama
+Jacksonville
+Kennesaw
+Stetson
+Maryland
+Michigan
+Indiana
+Illinois
+Iowa
+Penn St
+Wisconsin
+Rutgers
+Minnesota
+Northwestern
+Nebraska
+Kansas
+Baylor
+Texas Tech
+Oklahoma
+Texas
+Oklahoma St
+TCU
+Iowa St
+Kansas St
+West Virginia
+Villanova
+Marquette
+Xavier
+Seton Hall
+Providence
+Butler
+Creighton
+Georgetown
+DePaul
+St John's
+Utah St
+New Mexico
+San Diego St
+Montana
+E Washington
+Weber St
+Southern Utah
+N Colorado
+CS Sacramento
+Montana St
+Portland St
+Northern Arizona
+Idaho
+Idaho St
+Radford
+Gardner Webb
+Charleston So
+Winthrop
+Hampton
+Campbell
+Presbyterian
+Longwood
+UNC Asheville
+High Point
+SC Upstate
+UC Irvine
+UC Santa Barbara
+Hawaii
+CS Northridge
+CS Fullerton
+UC Davis
+UC Riverside
+Long Beach St
+Cal Poly
+Hofstra
+Nevada
+Col Charleston
+Towson
+James Madison
+Drexel
+William & Mary
+Delaware
+UNC Wilmington
+Elon
+Boise St
+Louisiana Tech
+UAB
+UTEP
+UT San Antonio
+Old Dominion
+MTSU
+FL Atlantic
+North Texas
+Rice
+Marshall
+Florida Intl
+Southern Miss
+Charlotte
+Wright St
+N Kentucky
+IL Chicago
+Oakland
+WI Green Bay
+Youngstown St
+WI Milwaukee
+IUPUI
+Detroit
+Cleveland St
+Fresno St
+Penn
+Colorado St
+Columbia
+Brown
+Princeton
+Dartmouth
+Cornell
+Rider
+Iona
+Manhattan
+Siena
+Monmouth NJ
+UNLV
+Canisius
+Air Force
+St Peter's
+Niagara
+Marist
+Wyoming
+San Jose St
+Bowling Green
+Kent
+Akron
+Ball St
+N Illinois
+C Michigan
+Miami OH
+E Michigan
+Ohio
+W Michigan
+Morgan St
+Norfolk St
+Bethune-Cookman
+NC Central
+S Carolina St
+NC A&T
+Howard
+Florida A&M
+Coppin St
+MD E Shore
+Delaware St
+Arizona
+Oregon
+Bradley
+Drake
+Indiana St
+Missouri St
+Evansville
+Valparaiso
+S Illinois
+Illinois St
+Colorado
+USC
+Washington
+Oregon St
+Arizona St
+Stanford
+UCLA
+Utah
+Washington St
+California
+New Mexico St
+ETSU
+F Dickinson
+LIU Brooklyn
+Mt St Mary's
+Merrimack
+Robert Morris
+Toledo
+Wagner
+Belmont
+WKU
+Murray St
+Austin Peay
+Jacksonville St
+E Illinois
+E Kentucky
+Morehead St
+SE Missouri St
+TN Martin
+Tennessee Tech
+Tennessee St
+SIUE
+Liberty
+Buffalo
+Loyola-Chicago
+Northern Iowa
+Wofford
+Harvard
+Vermont
+Northeastern
+Yale
+Boston Univ
+Sacred Heart
+Quinnipiac
+Colgate
+Bucknell
+Loyola MD
+American Univ
+Fairfield
+Army
+Lehigh
+Lafayette
+Holy Cross
+Navy
+South Alabama
+Ga Southern
+UT Arlington
+Georgia St
+Texas St
+Coastal Car
+Ark Little Rock
+Appalachian St
+ULM
+Louisiana
+Arkansas St
+Troy
+Furman
+UNC Greensboro
+Bryant
+Samford
+Mercer
+W Carolina
+VMI
+Chattanooga
+Citadel
+Central Conn
+Kentucky
+Florida
+Tennessee
+Auburn
+LSU
+Missouri
+Arkansas
+Mississippi St
+Georgia
+Texas A&M
+Mississippi
+South Carolina
+Alabama
+South Dakota
+N Dakota St
+NE Omaha
+Oral Roberts
+S Dakota St
+PFW
+North Dakota
+W Illinois
+Denver
+Sam Houston St
+Cent Arkansas
+New Orleans
+Lamar
+Houston Chr
+TAM C. Christi
+Nicholls St
+Abilene Chr
+SF Austin
+SE Louisiana
+McNeese St
+Incarnate Word
+Northwestern LA
+Grambling
+TX Southern
+Prairie View
+Jackson St
+Alabama St
+Ark Pine Bluff
+Alcorn St
+Southern Univ
+Alabama A&M
+MS Valley St
+Vanderbilt
+Grand Canyon
+Seattle
+Cal Baptist
+Utah Valley
+CS Bakersfield
+UTRGV
+Missouri KC
+Chicago St
+Gonzaga
+St Mary's CA
+BYU
+Pepperdine
+Santa Clara
+San Francisco
+San Diego
+Loy Marymount
+Pacific
+Portland
+Utah Tech
+Tarleton St
+Bellarmine
+UC San Diego
+St Thomas MN
+Queens NC
+Southern Indiana
+East Texas A&M
+Le Moyne
+St Francis PA
+Lindenwood
+Stonehill
+Mercyhurst
+West Georgia
+New Haven

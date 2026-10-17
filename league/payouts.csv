@@ -1,0 +1,116 @@
+player,category,description,amount
+Adam R,Credit/(Debt),Entry fee balance,-100
+Chris H,Credit/(Debt),Entry fee balance,-100
+Colin H,Credit/(Debt),Entry fee balance,-100
+Derek C,Credit/(Debt),Entry fee balance,-100
+Greg B,Credit/(Debt),Entry fee balance,-100
+Henry E,Credit/(Debt),Entry fee balance,-100
+Jim R,Credit/(Debt),Entry fee balance,-100
+Johnny P,Credit/(Debt),Entry fee balance,-100
+Kevin M,Credit/(Debt),Entry fee balance,-100
+Matt E,Credit/(Debt),Entry fee balance,-100
+Phil B,Credit/(Debt),Entry fee balance,-100
+Sam B,Credit/(Debt),Entry fee balance,-100
+Wade O,Credit/(Debt),Entry fee balance,-47
+Sean R,Season prize,Season standings 1st,150
+Greg B,Season prize,Season standings 2nd,125
+Derek C,Season prize,Season standings 3rd,100
+Mike Rice,Season prize,Season standings 4th,80
+Matt E,Season prize,Season standings 5th,70
+Smitty D,Season prize,Season standings 6th,60
+Chris H,Season prize,Season standings 7th,50
+Craig M,Season prize,Season standings 8th,40
+Matt S,Season prize,Season standings 9th,30
+Scott A,Season prize,Season standings 10th,20
+Chris H,NCAA prize,Champ: :-(,36
+Craig M,NCAA prize,Champ,36
+Matt E,NCAA prize,Champ,18
+Nate M,NCAA prize,Runner Up: Connecticut,24
+Sam B,NCAA prize,Runner Up: Connecticut,24
+Russ B,NCAA prize,Runner Up: Connecticut,12
+Ben P,NCAA prize,Final Four: Illinois,18
+Jacob K,NCAA prize,Final Four: Illinois,18
+Adam R,NCAA prize,Final Four: Arizona,18
+Khang N,NCAA prize,Final Four: Arizona,18
+Mike Rice,NCAA prize,Final Four: Illinois,9
+Johnny P,NCAA prize,Final Four: Arizona,9
+Henry E,NCAA prize,Elite 8: Purdue,12
+Wade O,NCAA prize,Elite 8: Purdue,12
+Anthony M,NCAA prize,Elite 8: Iowa,12
+Patrick M,NCAA prize,Elite 8: Iowa,12
+Matt E,NCAA prize,Elite 8: Duke,12
+Sean R,NCAA prize,Elite 8: Duke,12
+Khang N,NCAA prize,Elite 8: Tennessee,12
+Luke S,NCAA prize,Elite 8: Tennessee,12
+Ben P,NCAA prize,Sweet 16: Arkansas,6
+Chris H,NCAA prize,Sweet 16: Arkansas,6
+Phil B,NCAA prize,Sweet 16: Houston,6
+Russ B,NCAA prize,Sweet 16: Houston,6
+Ashton V,NCAA prize,Sweet 16: Nebraska,6
+Henry E,NCAA prize,Sweet 16: Nebraska,6
+Ashton V,NCAA prize,Sweet 16: Texas,6
+Scott A,NCAA prize,Sweet 16: Texas,6
+Jacob K,NCAA prize,Sweet 16: Michigan St,6
+Kevin M,NCAA prize,Sweet 16: Michigan St,6
+Greg B,NCAA prize,Sweet 16: St. Johns,6
+Scott A,NCAA prize,Sweet 16: St. Johns,6
+Adam R,NCAA prize,Sweet 16: Iowa St,6
+Matt S,NCAA prize,Sweet 16: Iowa St,6
+Anthony M,NCAA prize,Sweet 16: Alabama,6
+Craig M,NCAA prize,Sweet 16: Alabama,6
+Wade O,Tournament prize,Baha Mar Bahamas Championship (Purdue),5
+Henry E,Tournament prize,Baha Mar Bahamas Championship (Purdue),5
+Chris H,Tournament prize,Players Era Festival - 1st (Michigan),5
+Craig M,Tournament prize,Players Era Festival (Michigan),5
+Derek C,Tournament prize,Players Era Festival -2nd (Gonzaga),5
+Mike Rice,Tournament prize,Players Era Festival (Gonzaga),5
+Ashton V,Tournament prize,Players Era Festival-3rd (Kansas),5
+Henry E,Tournament prize,Players Era Festival (Kansas),5
+Phil B,Tournament prize,Rady Children's Invitational (TCU),5
+Russ B,Tournament prize,Rady Children's Invitational (TCU),5
+Nate M,Tournament prize,ESPN Events Invitational (Magic Bracket) (Byu),5
+Reynolds M,Tournament prize,ESPN Events Invitational (BYU),5
+Anthony M,Tournament prize,Acrisure Classic (Iowa),5
+Patrick M,Tournament prize,Acrisure Classic (Iowa),5
+Johnny P,Tournament prize,Shriners Hospitals Charleston Classic (Palmetto Bracket) (Clemson),5
+Sam B,Tournament prize,Shriners Hospitals Charleston Classic (Clemson),5
+Khang N,Tournament prize,Southwest Maui Invitational (USC),5
+Matt E,Tournament prize,Southwest Maui Invitational (USC),5
+Mike Rice,Tournament prize,Acrisure Holiday Classic (Colorado),5
+Nick L,Tournament prize,Acrisure Holiday Classic (Colorado),5
+Henry E,Tournament prize,Battle 4 Atlantis (Vanderbilt),5
+Patrick M,Tournament prize,Battle 4 Atlantis (Vanderbilt),5
+Henry E,Tournament prize,Emerald Coast Classic (LSU),5
+Patrick M,Tournament prize,Emerald Coast Classic (LSU),5
+Greg B,Misc prize,Most teams in NCAA,8
+Adam R,Misc prize,Most teams in NCAA,8
+Ashton V,Misc prize,Most teams in NCAA,8
+Kevin M,Misc prize,Highest average seed,16
+Jacob K,Misc prize,Highest average seed,8
+Russ B,Misc prize,Worst overall team,16
+Derek C,Misc prize,Worst overall team,8
+Colin H,Misc prize,Crown champion,8
+Luke S,Misc prize,Crown champion,8
+Greg B,Misc prize,Crown second,4
+Scott A,Misc prize,Crown second,4
+Matt E,Misc prize,Best worst team,16
+Colin H,Misc prize,Best worst team,8
+Anthony M,Misc prize,Worst best team,16
+Johnny P,Misc prize,Worst best team,4
+Bryan C,Misc prize,Worst best team,4
+Luke S,Misc prize,Best 10th pick,12
+Chris H,Misc prize,Best 10th pick,12
+Adam R,Misc prize,Worst week,16
+Anthony M,Misc prize,Worst week,8
+Craig M,Misc prize,NIT champion,12
+Jacob K,Misc prize,NIT champion,12
+Reynolds M,Misc prize,NIT runner-up,6
+Smitty D,Misc prize,NIT runner-up,6
+Colin H,Misc prize,Napoleon Dynamite,40
+Greg B,Misc prize,Napoleon Dynamite,10
+Sean R,Misc prize,Napoleon Dynamite,10
+Mike Rice,Misc prize,Napoleon Dynamite,10
+Matt S,Misc prize,Hebert Cup,40
+Jim R,Misc prize,Hebert Cup,20
+Khang N,Misc prize,Hebert Cup,10
+Patrick M,Misc prize,Hebert Cup,10

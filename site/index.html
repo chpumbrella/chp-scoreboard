@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CHP standings</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F5F2; --surface:#FFFFFF; --ink:#18202B; --muted:#5B6370; --line:#DADDD6;
+  --banner:#7A1F2B; --banner-ink:#F6E6C4; --maple:#B8742C; --follow:#FBF0DD; --follow-line:#E3C08E;
+  --good:#2D6A4F;
+  --display:"Big Shoulders Display","Oswald","Arial Narrow",Impact,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#11161D; --surface:#19202A; --ink:#E7E9ED; --muted:#9AA3AF; --line:#2C3541;
+    --banner:#8C2735; --banner-ink:#F6E6C4; --maple:#D9A15E; --follow:#2A2418; --follow-line:#6B5432;
+    --good:#7BC8A0; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11161D; --surface:#19202A; --ink:#E7E9ED; --muted:#9AA3AF; --line:#2C3541;
+  --banner:#8C2735; --banner-ink:#F6E6C4; --maple:#D9A15E; --follow:#2A2418; --follow-line:#6B5432;
+  --good:#7BC8A0; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 18px}
+a{color:inherit}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--maple);outline-offset:2px}
+
+/* header */
+header{padding:22px 0 0}
+.top{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-end;justify-content:space-between}
+h1{font:800 clamp(40px,8vw,64px)/.9 var(--display);margin:0;letter-spacing:.01em}
+h1 small{display:block;font:600 15px/1.4 var(--body);color:var(--muted);letter-spacing:0;margin-top:8px}
+.follow{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.follow select{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 8px;color:var(--ink)}
+nav{margin-top:20px;border-bottom:2px solid var(--ink);display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;text-decoration:none;padding:9px 13px 8px;font-weight:600;font-size:15px;color:var(--muted);border-radius:6px 6px 0 0}
+nav a[aria-current="page"]{background:var(--ink);color:var(--bg)}
+nav a:hover:not([aria-current]){color:var(--ink)}
+
+main{padding:26px 0 40px;min-height:60vh}
+h2{font:800 32px/1 var(--display);margin:0 0 6px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 18px}
+
+/* rafters: the one bold thing */
+.rafters{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;padding-top:14px;margin-bottom:34px}
+.rafters::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(90deg,var(--ink) 0 18px,transparent 18px 24px);opacity:.85}
+.banner{background:var(--banner);color:var(--banner-ink);padding:18px 18px 46px;clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 26px),0 100%);text-align:center;transform-origin:top center}
+.banner .what{font-size:13px;font-weight:600;opacity:.85}
+.banner .who{font:800 clamp(28px,4.6vw,38px)/1 var(--display);margin:8px 0 6px;overflow-wrap:anywhere}
+.banner .rec{font:600 18px/1 var(--display);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:no-preference){
+  .banner{animation:hang .7s cubic-bezier(.2,.9,.3,1.25) both}
+  .banner:nth-child(2){animation-delay:.08s}
+  .banner:nth-child(3){animation-delay:.16s}
+  @keyframes hang{from{transform:translateY(-24px) rotate(-2deg);opacity:0}to{transform:none;opacity:1}}
+}
+
+/* controls */
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:14px;background:var(--surface)}
+.seg button{border:0;background:transparent;padding:7px 14px;font-weight:600;font-size:14px;cursor:pointer;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.weeks{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:12px;scrollbar-width:thin}
+.weeks button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600;cursor:pointer;font-variant-numeric:tabular-nums}
+.weeks button[aria-pressed="true"]{background:var(--banner);border-color:var(--banner);color:var(--banner-ink)}
+.status{display:inline-block;font-size:13px;font-weight:600;padding:2px 9px;border-radius:999px;border:1px solid var(--line);margin-left:6px;vertical-align:middle}
+.status.live{border-color:var(--maple);color:var(--maple)}
+input[type=search]{width:100%;max-width:340px;padding:8px 11px;border:1px solid var(--line);border-radius:8px;background:var(--surface);margin-bottom:14px}
+
+/* tables */
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-size:13px;font-weight:600;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.num{text-align:right;white-space:nowrap}
+.place{font:800 20px/1 var(--display);width:3.4em;white-space:nowrap}
+.place.t{color:var(--muted)}
+tr.me td{background:var(--follow)}
+tr.me td:first-child{box-shadow:inset 4px 0 0 var(--follow-line)}
+.rowbtn{background:none;border:0;padding:0;font-weight:600;cursor:pointer;text-align:left;display:inline-flex;gap:6px;align-items:center;white-space:nowrap}
+.rowbtn::after{content:"";width:7px;height:7px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translate(-2px,-2px);transition:transform .15s}
+.rowbtn[aria-expanded="true"]::after{transform:rotate(-135deg) translate(-1px,-1px)}
+tr.detail td{background:var(--bg);padding:12px 12px 16px}
+.money{color:var(--good);font-weight:600}
+.dim{color:var(--muted)}
+.hide-sm{}
+@media (max-width:620px){.hide-sm{display:none}td,th{padding:8px 7px;font-size:15px}th{font-size:12px}.place{width:auto;font-size:18px}}
+
+/* roster detail */
+.halves{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.halves h4{margin:0 0 6px;font-size:14px}
+.roster{list-style:none;margin:0;padding:0;font-size:14px}
+.roster li{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.roster li.drop{color:var(--muted)}
+.roster li.drop span:first-child{text-decoration:line-through}
+.tag{font-size:12px;color:var(--maple);font-weight:600;margin-left:6px;text-decoration:none;display:inline-block}
+.games{list-style:none;margin:0;padding:0;font-size:14px;columns:2 260px;column-gap:24px}
+.games li{break-inside:avoid;padding:2px 0}
+.w{color:var(--good);font-weight:700}
+.l{color:var(--banner);font-weight:700}
+:root[data-theme="dark"] .l{color:#F08A93}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .l{color:#F08A93}}
+
+/* winners grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px}
+.card h3{font:800 20px/1 var(--display);margin:0 0 8px}
+.card ol{margin:0;padding:0;list-style:none}
+.card li{display:flex;justify-content:space-between;gap:8px;padding:2px 0}
+
+/* cup */
+.cup{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(170px,1fr);gap:14px;overflow-x:auto;padding-bottom:6px}
+.cup h3{font:800 20px/1 var(--display);margin:0 0 10px}
+.match{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin-bottom:10px;font-size:14px}
+.match div{padding:6px 10px;display:flex;justify-content:space-between;gap:8px}
+.match div.mine{background:var(--follow)}
+.match div>span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+.match .tag{margin-left:2px}
+.match .why{margin:0;padding:4px 10px 6px;font-size:12px;color:var(--maple);border-top:1px solid var(--line)}
+.match div+div{border-top:1px solid var(--line)}
+.match .won{font-weight:700}
+.match .won>span:first-child::after{content:" ✓";color:var(--good)}
+
+/* hall of fame */
+.titles{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.pennant{background:var(--banner);color:var(--banner-ink);padding:10px 14px 22px;clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 12px),0 100%);text-align:center;min-width:120px}
+.pennant b{display:block;font:800 22px/1 var(--display)}
+.pennant span{font-size:13px}
+
+/* rules */
+.prose{max-width:68ch}
+.prose h1{font:800 32px/1 var(--display);margin:0 0 14px}
+.prose h2{font-size:24px;margin:28px 0 8px}
+.prose ul{padding-left:20px}
+.prose li{margin:3px 0}
+
+footer{border-top:1px solid var(--line);padding:18px 0 30px;color:var(--muted);font-size:13px}
+footer details{margin-top:8px}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="top">
+    <h1 id="title">CHP<small id="season">Loading standings…</small></h1>
+    <label class="follow">Highlight
+      <select id="follow"><option value="">Nobody</option></select>
+    </label>
+  </div>
+  <nav id="nav" aria-label="Sections">
+    <a href="#standings">Standings</a>
+    <a href="#weekly">Weekly</a>
+    <a href="#teams">Teams</a>
+    <a href="#money">Money</a>
+    <a href="#cup">Cup</a>
+    <a href="#hall">Hall of Fame</a>
+    <a href="#rules">Rules</a>
+  </nav>
+</header>
+<main class="wrap" id="main" tabindex="-1"></main>
+<footer class="wrap" id="foot"></footer>
+
+<script>
+(() => {
+  let D = null;
+  const S = { mode: "season", week: null, open: new Set(), follow: "", teamQ: "" };
+  try { S.follow = localStorage.getItem("chp-follow") || ""; } catch (e) {}
+
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const rec = (w, l) => `${w}–${l}`;
+  const pct = p => p >= 1 ? "1.000" : p.toFixed(3).replace(/^0/, "");
+  const cash = n => {
+    const v = Math.round(n * 100) / 100;
+    const s = Math.abs(v) % 1 ? Math.abs(v).toFixed(2) : String(Math.abs(v));
+    return (v < 0 ? "−$" : "$") + s;
+  };
+  const day = iso => new Date(iso + "T12:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  const player = name => D.players.find(p => p.name === name);
+  const meCls = name => name === S.follow ? ' class="me"' : "";
+
+  function placeCell(r) {
+    return `<td class="place${r.tied > 1 ? " t" : ""}">${esc(r.rank)}</td>`;
+  }
+
+  function rowToggle(key, label) {
+    const open = S.open.has(key);
+    return `<button class="rowbtn" data-open="${esc(key)}" aria-expanded="${open}">${esc(label)}</button>`;
+  }
+
+  // ---------- views
+  function viewStandings() {
+    const season = D.standings.season;
+    const leaders = season.filter(r => r.place === 1);
+    let wk = D.weeks.find(w => w.id === D.current_week);
+    if (wk && !wk.prize) wk = [...D.weeks].reverse().find(w => w.prize && w.status === "final") || wk;
+    const wkRows = wk && D.weekly[wk.id];
+    const wkLead = wkRows ? wkRows.filter(r => r.place === 1) : [];
+    const banners = [];
+    if (leaders.length) banners.push({ what: "Season leader", who: leaders.map(r => r.name).join(" & "), rec: rec(leaders[0].W, leaders[0].L) });
+    if (wkLead.length && (wkLead[0].W + wkLead[0].L) > 0) banners.push({ what: `${wk.label} ${wk.status === "live" ? "leader so far" : "winner"}`, who: wkLead.map(r => r.name).join(" & "), rec: rec(wkLead[0].W, wkLead[0].L) });
+    if (S.follow) {
+      const me = season.find(r => r.name === S.follow);
+      if (me) banners.push({ what: `${me.name} is`, who: placeWord(me), rec: rec(me.W, me.L) });
+    }
+
+    const rows = D.standings[S.mode];
+    const p = Object.fromEntries(D.players.map(x => [x.name, x]));
+    const title = { season: "Season standings", h1: "First half", h2: "Second half" }[S.mode];
+    return `
+      <div class="rafters">${banners.map(b => `<div class="banner"><div class="what">${esc(b.what)}</div><div class="who">${esc(b.who)}</div><div class="rec">${esc(b.rec)}</div></div>`).join("")}</div>
+      <h2>${title}</h2>
+      <p class="sub">Each half counts your best 9 teams; your worst team that half is dropped. Ties are not broken.</p>
+      <div class="seg" role="group" aria-label="Standings view">
+        ${[["season","Season"],["h1","1st half"],["h2","2nd half"]].map(([k,l]) => `<button data-mode="${k}" aria-pressed="${S.mode===k}">${l}</button>`).join("")}
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>Place</th><th>Player</th><th class="num">W–L</th><th class="num">Pct</th>
+          ${S.mode === "season" ? `<th class="num hide-sm">1st half</th><th class="num hide-sm">2nd half</th>` : `<th class="hide-sm">Dropped team</th>`}</tr></thead>
+        <tbody>${rows.map(r => {
+          const pl = p[r.name], key = "s:" + r.name;
+          const extra = S.mode === "season"
+            ? `<td class="num hide-sm">${rec(pl.half[1].W, pl.half[1].L)}</td><td class="num hide-sm">${rec(pl.half[2].W, pl.half[2].L)}</td>`
+            : `<td class="hide-sm dim">${esc(pl.half[S.mode === "h1" ? 1 : 2].dropped)}</td>`;
+          return `<tr${meCls(r.name)}>${placeCell(r)}<td>${rowToggle(key, r.name)}</td><td class="num">${rec(r.W, r.L)}</td><td class="num">${pct(r.pct)}</td>${extra}</tr>`
+            + (S.open.has(key) ? `<tr class="detail"><td colspan="6">${rosterDetail(pl)}</td></tr>` : "");
+        }).join("")}</tbody>
+      </table></div>`;
+  }
+
+  function placeWord(r) {
+    const n = r.place, t = n % 100, u = n % 10;
+    const s = (t >= 11 && t <= 13) ? "th" : u === 1 ? "st" : u === 2 ? "nd" : u === 3 ? "rd" : "th";
+    return (r.tied > 1 ? "Tied " : "") + n + s;
+  }
+
+  function rosterDetail(pl) {
+    const half = h => {
+      const started = D.weeks.some(w => w.half === h && w.status !== "upcoming");
+      return `<div><h4>${h === 1 ? "First half" : "Second half"} · ${rec(pl.half[h].W, pl.half[h].L)} best 9</h4>
+        <ul class="roster">${pl.teams.map(t => {
+          const x = t["h" + h];
+          return `<li class="${x.dropped && started ? "drop" : ""}"><span>${esc(x.team)}${x.redraft ? '<span class="tag">Redraft</span>' : ""}${x.dropped && started ? '<span class="tag">Dropped</span>' : ""}</span><span>${rec(x.W, x.L)}</span></li>`;
+        }).join("")}</ul></div>`;
+    };
+    return `<div class="halves">${half(1)}${half(2)}</div>`;
+  }
+
+  function viewWeekly() {
+    const avail = D.weeks.filter(w => w.status !== "upcoming");
+    if (!avail.length) return `<h2>Weekly</h2><div class="empty">Week 1 starts ${day(D.weeks[0].start)}. Results appear here once games are played.</div>`;
+    if (!S.week || !D.weekly[S.week]) S.week = D.current_week;
+    const wk = D.weeks.find(w => w.id === S.week);
+    const rows = D.weekly[wk.id];
+    const range = `${day(wk.start)}${wk.end ? " – " + day(wk.end) : " onward"}`;
+    const status = wk.status === "live" ? `<span class="status live">In progress</span>` : `<span class="status">Final</span>`;
+    const winners = D.weeks.filter(w => w.prize && w.status === "final").reverse();
+    return `
+      <h2>${esc(wk.label)} ${status}</h2>
+      <p class="sub">${range}. Weekly records count all 10 of your teams.${wk.prize ? ` Prizes: ${D.weekly_prizes.map(cash).join(", ")}; tied players split the money for the places they share.` : " No weekly prize this week."}</p>
+      <div class="weeks" role="group" aria-label="Choose a week">
+        ${avail.map(w => `<button data-week="${esc(w.id)}" aria-pressed="${w.id === wk.id}">${esc(w.id.match(/^\d+$/) ? "Wk " + w.id : w.label)}</button>`).join("")}
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>Place</th><th>Player</th><th class="num">W–L</th><th class="num hide-sm">Pct</th>${wk.prize ? `<th class="num">${wk.status === "live" ? "Would win" : "Prize"}</th>` : ""}</tr></thead>
+        <tbody>${rows.map(r => {
+          const key = "w:" + wk.id + ":" + r.name;
+          return `<tr${meCls(r.name)}>${placeCell(r)}<td>${rowToggle(key, r.name)}</td><td class="num">${rec(r.W, r.L)}</td><td class="num hide-sm">${pct(r.pct)}</td>${wk.prize ? `<td class="num">${r.prize ? `<span class="money">${cash(r.prize)}</span>` : ""}</td>` : ""}</tr>`
+            + (S.open.has(key) ? `<tr class="detail"><td colspan="5">${weekGames(player(r.name), wk)}</td></tr>` : "");
+        }).join("")}</tbody>
+      </table></div>
+      ${winners.length ? `<h2 style="margin-top:34px">Weekly winners</h2><p class="sub">Final weeks, most recent first.</p>
+      <div class="grid">${winners.map(w => `<div class="card"><h3>${esc(w.label)}</h3><ol>${D.weekly[w.id].filter(r => r.prize).map(r => `<li><span>${esc(r.rank)} ${esc(r.name)}</span><span class="money">${cash(r.prize)}</span></li>`).join("")}</ol></div>`).join("")}</div>` : ""}`;
+  }
+
+  function weekGames(pl, wk) {
+    const mine = new Set(pl.teams.map(t => t["h" + wk.half].team));
+    const g = D.games.filter(x => x[1] === wk.id && (mine.has(x[2]) || mine.has(x[4])));
+    if (!g.length) return `<span class="dim">No games yet this week.</span>`;
+    return `<ul class="games">${g.map(([d, , w, ws, l, ls, counts]) => {
+      const won = mine.has(w), lost = mine.has(l);
+      const mark = won && lost ? `<span class="w">W</span>/<span class="l">L</span>` : won ? (counts ? `<span class="w">W</span>` : `<span class="dim" title="Win over a non-Division I team doesn't count">W*</span>`) : `<span class="l">L</span>`;
+      return `<li>${mark} ${day(d)}: ${esc(w)} ${ws}, ${esc(l)} ${ls}</li>`;
+    }).join("")}</ul>${g.some(x => !x[6] && mine.has(x[2])) ? `<p class="dim" style="font-size:13px;margin:8px 0 0">W* is a win over a non-Division I team, which doesn't count.</p>` : ""}`;
+  }
+
+  function viewTeams() {
+    const q = S.teamQ.trim().toLowerCase();
+    const list = Object.entries(D.teams)
+      .filter(([t, i]) => !q || t.toLowerCase().includes(q) || i.h1.concat(i.h2).some(n => n.toLowerCase().includes(q)))
+      .sort((a, b) => a[0].localeCompare(b[0]));
+    const owners = (arr) => arr.map(n => n === S.follow ? `<b>${esc(n)}</b>` : esc(n)).join(", ");
+    return `<h2>Teams</h2><p class="sub">Every drafted team, its record in each half and who owns it. Search by team or player.</p>
+      <input type="search" id="teamq" placeholder="Search teams or players" value="${esc(S.teamQ)}" aria-label="Search teams or players">
+      <div class="tbl"><table>
+        <thead><tr><th>Team</th><th class="num">1st half</th><th class="num">2nd half</th><th>Owners</th></tr></thead>
+        <tbody>${list.map(([t, i]) => {
+          const same = i.h1.join() === i.h2.join();
+          return `<tr><td><b>${esc(t)}</b></td><td class="num">${rec(...i.rec1)}</td><td class="num">${rec(...i.rec2)}</td><td style="font-size:14px">${same ? owners(i.h1) : `${i.h1.length ? `1st: ${owners(i.h1)}` : ""}${i.h1.length && i.h2.length ? "<br>" : ""}${i.h2.length ? `2nd: ${owners(i.h2)}` : ""}`}</td></tr>`;
+        }).join("") || `<tr><td colspan="4" class="empty">No teams match “${esc(S.teamQ)}”.</td></tr>`}</tbody>
+      </table></div>`;
+  }
+
+  function viewMoney() {
+    const rows = [...D.money].sort((a, b) => b.winnings - a.winnings || a.name.localeCompare(b.name));
+    const tot = k => rows.reduce((s, r) => s + r[k], 0);
+    return `<h2>Money</h2><p class="sub">Weekly prizes are added automatically when a week is final. Everything else is entered by the commissioner.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Player</th><th class="num">Weekly</th><th class="num">Other prizes</th><th class="num">Winnings</th><th class="num hide-sm">Credit/(debt)</th><th class="num">Net</th></tr></thead>
+        <tbody>${rows.map(r => {
+          const key = "m:" + r.name;
+          return `<tr${meCls(r.name)}><td>${r.items.length ? rowToggle(key, r.name) : `<b>${esc(r.name)}</b>`}</td><td class="num">${r.weekly ? cash(r.weekly) : ""}</td><td class="num">${r.prizes ? cash(r.prizes) : ""}</td><td class="num"><b>${r.winnings ? cash(r.winnings) : ""}</b></td><td class="num hide-sm">${r.credit ? cash(r.credit) : ""}</td><td class="num">${cash(r.total)}</td></tr>`
+            + (S.open.has(key) ? `<tr class="detail"><td colspan="6"><ul class="roster">${r.items.map(i => `<li><span>${esc(i.category)}: ${esc(i.description)}</span><span>${cash(i.amount)}</span></li>`).join("")}</ul></td></tr>` : "");
+        }).join("")}
+        <tr><td><b>Total</b></td><td class="num">${cash(tot("weekly"))}</td><td class="num">${cash(tot("prizes"))}</td><td class="num"><b>${cash(tot("winnings"))}</b></td><td class="num hide-sm">${cash(tot("credit"))}</td><td class="num">${cash(tot("total"))}</td></tr>
+        </tbody>
+      </table></div>`;
+  }
+
+  function viewCup() {
+    const C = D.cup;
+    if (!C.rounds || !C.rounds.length) return `<h2>Hebert Cup</h2><div class="empty">The bracket appears here once first-round matchups are entered.</div>`;
+    const side = (n, r, m) => {
+      const won = n && n === m.winner, lead = n && n === m.leader;
+      return `<div class="${won ? "won" : ""}${S.follow && n === S.follow ? " mine" : ""}"><span>${n ? esc(n) : '<span class="dim">TBD</span>'}${lead ? ' <span class="tag">Leading</span>' : ""}</span>${r ? `<span class="dim">${rec(r[0], r[1])}</span>` : ""}</div>`;
+    };
+    const note = m => {
+      if (!m.how || m.how === "win %") return "";
+      if (m.how === "bye") return `<p class="why">Bye</p>`;
+      if (m.how === "commissioner") return `<p class="why">Set by the commissioner</p>`;
+      if (!m.winner && !m.leader) return `<p class="why">Tied on every tiebreaker; the commissioner decides</p>`;
+      return `<p class="why">${m.leader ? "Ahead" : "Won"} on ${esc(m.how)}</p>`;
+    };
+    const champ = C.champion ? `<div class="rafters" style="max-width:320px"><div class="banner"><div class="what">Hebert Cup champion</div><div class="who">${esc(C.champion)}</div><div class="rec">${esc(D.season)}</div></div></div>` : "";
+    return `${champ}<h2>Hebert Cup</h2><p class="sub">Head-to-head matchups decided automatically: better win % for the week, then more wins, prior week win %, point differential, and win % of your #10 pick, then #9, and so on.</p>
+      <div class="cup">${C.rounds.map(r => `<section><h3>${esc(r.label)}${r.status === "live" ? ' <span class="status live">In progress</span>' : ""}</h3>${r.matches.map(m => `<div class="match">${side(m.p1, m.r1, m)}${side(m.p2, m.r2, m)}${note(m)}</div>`).join("")}</section>`).join("")}</div>`;
+  }
+
+  function viewHall() {
+    const count = {};
+    D.hall_of_fame.forEach(r => { if (r.first) count[r.first] = (count[r.first] || 0) + 1; });
+    const top = Object.entries(count).filter(([, n]) => n > 1).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    const rows = [...D.hall_of_fame].reverse();
+    return `<h2>Hall of Fame</h2><p class="sub">Final overall standings since ${esc(D.hall_of_fame[0]?.season || "")}.</p>
+      <div class="titles">${top.map(([n, c]) => `<div class="pennant"><b>${c}×</b><span>${esc(n)}</span></div>`).join("")}</div>
+      <div class="tbl"><table>
+        <thead><tr><th>Season</th><th>Champion</th><th class="hide-sm">2nd</th><th class="hide-sm">3rd</th><th class="hide-sm">4th</th></tr></thead>
+        <tbody>${rows.map(r => `<tr><td class="dim">${esc(r.season)}</td><td><b>${esc(r.first) || '<span class="dim">—</span>'}</b></td><td class="hide-sm">${esc(r.second)}</td><td class="hide-sm">${esc(r.third)}</td><td class="hide-sm">${esc(r.fourth)}</td></tr>`).join("")}</tbody>
+      </table></div>`;
+  }
+
+  function md(src) {
+    const out = []; let list = false;
+    const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+    src.split(/\n/).forEach(line => {
+      const t = line.trim();
+      if (/^- /.test(t)) { if (!list) { out.push("<ul>"); list = true; } out.push(`<li>${inline(t.slice(2))}</li>`); return; }
+      if (list) { out.push("</ul>"); list = false; }
+      if (!t) return;
+      if (t.startsWith("## ")) out.push(`<h2>${inline(t.slice(3))}</h2>`);
+      else if (t.startsWith("# ")) out.push(`<h1>${inline(t.slice(2))}</h1>`);
+      else out.push(`<p>${inline(t)}</p>`);
+    });
+    if (list) out.push("</ul>");
+    return out.join("");
+  }
+  const viewRules = () => `<div class="prose">${md(D.rules || "# Rules\nNo rules entered yet.")}</div>`;
+
+  // ---------- shell
+  const views = { standings: viewStandings, weekly: viewWeekly, teams: viewTeams, money: viewMoney, cup: viewCup, hall: viewHall, rules: viewRules };
+  function route() { const v = location.hash.slice(1); return views[v] ? v : "standings"; }
+
+  function render(keepFocus) {
+    const v = route();
+    document.querySelectorAll("nav a").forEach(a => { if (a.getAttribute("href") === "#" + v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    $("#main").innerHTML = views[v]();
+    const navOn = $('nav a[aria-current="page"]'), nav = $("nav");
+    if (navOn && (navOn.offsetLeft + navOn.offsetWidth > nav.scrollLeft + nav.clientWidth || navOn.offsetLeft < nav.scrollLeft)) nav.scrollLeft = navOn.offsetLeft - 12;
+    const chips = $(".weeks"), on = chips && chips.querySelector('[aria-pressed="true"]');
+    if (on) chips.scrollLeft = on.offsetLeft - chips.clientWidth / 2 + on.offsetWidth / 2;
+    if (v === "teams") {
+      const q = $("#teamq");
+      q.addEventListener("input", () => { S.teamQ = q.value; render(true); });
+      if (keepFocus) { q.focus(); q.setSelectionRange(q.value.length, q.value.length); }
+    }
+  }
+
+  $("#main").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.mode) { S.mode = b.dataset.mode; render(); }
+    else if (b.dataset.week) { S.week = b.dataset.week; render(); }
+    else if (b.dataset.open) {
+      const k = b.dataset.open; S.open.has(k) ? S.open.delete(k) : S.open.add(k); render();
+      const again = document.querySelector(`[data-open="${CSS.escape(k)}"]`); if (again) again.focus();
+    }
+  });
+  window.addEventListener("hashchange", () => { render(); });
+
+  function boot(data) {
+    D = data;
+    document.title = `${D.league} ${D.season} standings`;
+    $("#title").firstChild.textContent = D.league;
+    const upd = new Date(D.updated);
+    $("#season").textContent = `${D.season} college basketball wins pool`;
+    const sel = $("#follow");
+    [...D.players.map(p => p.name)].sort().forEach(n => sel.add(new Option(n, n)));
+    sel.value = D.players.some(p => p.name === S.follow) ? S.follow : "";
+    sel.addEventListener("change", () => { S.follow = sel.value; try { localStorage.setItem("chp-follow", S.follow); } catch (e) {} render(); });
+    $("#foot").innerHTML = `Scores from Massey Ratings. Updated ${upd.toLocaleString(undefined, { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}${D.last_game ? `, through games of ${day(D.last_game)}` : ""}. Questions about the standings go to the commissioner.`
+      + (D.warnings.length ? `<details><summary>Data notes for the commissioner (${D.warnings.length})</summary><ul>${D.warnings.map(w => `<li>${esc(w)}</li>`).join("")}</ul></details>` : "");
+    render();
+  }
+
+  if (window.CHP_DATA) boot(window.CHP_DATA);
+  else fetch("data.json?t=" + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(boot)
+    .catch(() => { $("#season").textContent = "Standings couldn't be loaded."; $("#main").innerHTML = `<div class="empty">The standings file didn't load. Refresh the page; if it keeps happening, let the commissioner know.</div>`; });
+})();
+</script>
+</body>
+</html>

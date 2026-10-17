@@ -1,0 +1,24 @@
+# League settings. Edit on GitHub: click this file, then the pencil icon.
+
+league_name = "CHP"
+season = "2025–26"
+
+# The Massey Ratings scores page for this season (same link the old Excel
+# web query used). The s= number changes every season.
+massey_url = "https://masseyratings.com/scores.php?s=651343&sub=11590&all=1&mode=3&sch=on&format=0"
+
+# Weekly prize money for 1st, 2nd, 3rd and 4th. Tied players split the
+# combined money for the places they occupy.
+weekly_prizes = [35, 25, 15, 10]
+
+# What counts as a tie in the standings:
+#   "pct"    = same winning percentage (12-6 ties 10-5)
+#   "record" = identical won-lost record only
+tie_rule = "pct"
+
+# Used to decide when a week is over.
+timezone = "America/New_York"
+
+# League weeks the Hebert Cup is played in, first round to final. Each round's
+# winners advance automatically. First-round matchups go in cup.csv.
+cup_weeks = ["2", "3", "4", "5", "6"]
